@@ -1,5 +1,3 @@
-
-#import time
 import graph
 import dijkstra
 
@@ -14,18 +12,12 @@ def main(n):
     t2 = time.time()
     time = t2- t1 
     if result != 10**9:
-        print(result, "Time spent: ", time)
+        print("shortest route: ", result, "\nTime spent: ", time)
     else:
         print("no route \nTime spent: ", time)
 
-        #return d.dijkstra()
+if __name__ == "__main__":
+    main(4)
+    main(8)
 
-#m = Main()
-main(4)
-main(8)
-#print(k)
-
-#print("NEW")
-#k2 = main(20)
-#print(k2)
 

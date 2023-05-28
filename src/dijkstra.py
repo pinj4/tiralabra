@@ -25,7 +25,7 @@ class Dijkstra:
                 if new < current:
                     distances[child[0]] = distances[node] + child[1]
                     heappush(heap, (distances[child[0]], child[0]))
-
+                    
         return distances[self.n*self.n]
 
 

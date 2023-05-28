@@ -6,7 +6,7 @@ class Graph:
         self.matrix = [['x'] * (self.n) for _ in range(self.n)]
         self.graph = [[] for _ in range(self.n*self.n+1)]
         self.weights = {}
-        for i in range(self.n*self.n+3):
+        for i in range(self.n*self.n+1):
             self.weights[i] = 10**9
     
     def get_graph(self):
