@@ -1,6 +1,6 @@
 # tiralabra
 
-![GHA workflow badge]https://github.com/pinj4/tiralabra/workflows/CI/badge.svg
+![GHA workflow badge](https://github.com/pinj4/tiralabra/workflows/CI/badge.svg)
 
 [Määrittelydokumentti](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/maarittelydokumentti.md)
 
