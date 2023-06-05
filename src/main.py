@@ -1,5 +1,6 @@
 import map_file
 import dijkstra
+from math import inf
 
 def main():
     import time
@@ -12,7 +13,7 @@ def main():
     result = d.dijkstra()
     t2 = time.time()
     time = t2- t1 
-    if result != 10**9:
+    if result != inf:
         print("shortest route: ", result, "\nTime spent: ", time)
     else:
         print("no route \nTime spent: ", time)
