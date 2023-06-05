@@ -8,3 +8,4 @@
 ### Viikkoraportit
 - [Viikko 1](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_1.md)
 - [Viikko 2](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_2.md)
+- [Viikko 3](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_3.md)

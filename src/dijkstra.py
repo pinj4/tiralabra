@@ -26,6 +26,6 @@ class Dijkstra:
                     distances[child[0]] = distances[node] + child[1]
                     heappush(heap, (distances[child[0]], child[0]))
 
-        return distances
+        return distances[-1]
 
 
