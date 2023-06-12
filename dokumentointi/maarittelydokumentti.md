@@ -4,7 +4,7 @@
 - Ohjelmointikieli: Python
 - Opinto-ohjelma: Tietojenkäsittelytieteen kandi
 
-Toteutan ohjelman, joka löytää painotetun verkon lyhyimmän reitin pisteestä toiseen kahdella eri algoritmillä. Vertailen tässä Dijsktra ja IDA* algoritmia. Käytän ohjelmassa Movin AI LAb:in sivuilta ladattuja [MAPF-karttoja](https://www.movingai.com/benchmarks/mapf/index.html)
+Toteutan ohjelman, joka löytää verkon lyhyimmän reitin pisteestä toiseen kahdella eri algoritmillä. Kartassa voidaan liikkua sivusuuntiin sekä diagonaalisesti. Vertailen tässä Dijsktra ja IDA* algoritmia. Käytän ohjelmassa Movin AI LAb:in sivuilta ladattuja [MAPF-karttoja](https://www.movingai.com/benchmarks/mapf/index.html)
 
 ## Algoritmit
 
