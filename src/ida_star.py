@@ -11,7 +11,7 @@ class IdaStar:
         while True:
             temp = self.search(path, 0, threshold)
             if temp == "FOUND": 
-                return path, len(path)
+                return len(path)
             if temp == inf: 
                 return inf
             threshold = temp
