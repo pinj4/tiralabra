@@ -1,12 +1,27 @@
-from math import inf
+from math import inf, sqrt
 
 class Map():
     def __init__(self, file):
         self.file = file
         self.map = None
         self.map_width = 0
-        self.map_graph = []
-        self.graph = None
+        self._map_graph = []
+        self.graph = []
+    
+    def print_map(self):
+        print(self.map)
+    
+    def get_graph(self):
+        self.create_map()
+        self.generate_graph()
+        return self.graph
+          
+    def create_map(self):
+        try:
+            self.map_file_contents()
+            return "Done"
+        except:
+            return "wrong file"
 
     def map_file_contents(self):
         map_contents = []
@@ -25,45 +40,29 @@ class Map():
                     map_contents.append(row)
                     row = []
         self.map_width = int("".join(map(str, width)))
-        self.map_graph =  map_contents
-     
-    def print_map(self):
-        print(self.map)
+        self._map_graph = map_contents
     
-    def create_map(self):
-        try:
-            self.map_file_contents()
-            return "Done"
-        except:
-            return "wrong file"
-    
-    def get_graph(self):
-        return self.graph
+    def add_edge(self, a, b, node_a, node_b, weight):
+        if a >= 0 and b >= 0:
+            if node_a != "@" and node_b != "@":   
+                self.graph[a].append((b, weight))   
+                self.graph[b].append((a, weight))
 
-    def add_edge(self, a, b, node1, node2):
-        if a >= 0 and b >= 0: 
-            if node1 != "@" and node2 != "@":   
-                self.graph[a].append((b, 1))   
-                self.graph[b].append((a, 1))  
     
     def generate_graph(self):
         self.graph = [[] for _ in range(self.map_width*self.map_width)]
         node = 0
-        for row in range(len(self.map_graph)):
-            for x in range(len(self.map_graph[row])):
-                n = self.map_graph[row][x]
+        for row in range(len(self._map_graph)):
+            for x in range(len(self._map_graph[row])):
+                n = self._map_graph[row][x]
                 if n != "@":
-                    self.add_edge(node, node-1, self.map_graph[row][x],self.map_graph[row][x-1])
-                    self.add_edge(node, node-self.map_width, self.map_graph[row][x], self.map_graph[row-1][x])
+                    if row - 1 > 0 and x - 1 > 0:
+                        self.add_edge(node, node-1, self._map_graph[row][x],self._map_graph[row][x-1], 1)
+                        self.add_edge(node, node-self.map_width, self._map_graph[row][x], self._map_graph[row-1][x], 1)
+                    ## diagonaalit :
+                    if row - 1 > 0 and x - 1 > 0:
+                        self.add_edge(node, node-self.map_width - 1, self._map_graph[row][x], self._map_graph[row-1][x-1], sqrt(2))
+                    if row - 1 > 0 and x + 1 < self.map_width:
+                        self.add_edge(node, node-self.map_width + 1 , self._map_graph[row][x], self._map_graph[row-1][x+1], sqrt(2))
                 node += 1
-
-#m = Map("map_1.map")
-#print(m.create_map())
-#print(m.map_graph_weighted())
-#m.generate_graph()
-#print(m.graph)
-#print("Graph ", m.get_map_graph())
-
-#m2 = Map("map_4.map")
-#print(m2.create_map())
     

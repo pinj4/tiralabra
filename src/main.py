@@ -1,22 +1,46 @@
+from math import inf
 import map_file
 import dijkstra
-from math import inf
+import ida_star
+
 
 def main():
     import time
-    m = map_file.Map("map_1.map")
-    m.create_map()
-    m.generate_graph()
-    m.print_map()
-    d = dijkstra.Dijkstra(m.get_graph(), m.map_width)
-    t1 = time.time()
-    result = d.dijkstra()
-    t2 = time.time()
-    time = t2- t1 
-    if result != inf:
-        print("shortest route: ", result, "\nTime spent: ", time)
-    else:
-        print("no route \nTime spent: ", time)
+    while True:
+        choose_map = input("Choose map 1-7 or type q to quit: ")
+        if choose_map == "q":
+            print("goodbye")
+            break
+        elif choose_map not in ["1", "2", "3", "4", "5", "6", "7"]:
+            print("choose a number between 1-7")
+            break
+        
+        m = map_file.Map(f"map_{choose_map}.map")
+
+        graph = m.get_graph()
+        m.print_map()
+
+        d = dijkstra.Dijkstra(graph, m.map_width)
+        d_t1 = time.time()
+        d_result = d.dijkstra()
+        d_t2 = time.time()
+        d_time = d_t2 - d_t1
+
+        if d_result != inf:
+            print("Dijkstra \nshortest route: ", d_result, "\nTime spent: ", d_time)
+        else:
+            print("Dijkstra \nno route \nTime spent: ", d_time)
+
+        IDA = ida_star.IdaStar(graph)
+        i_t1 = time.time()
+        i_result = IDA.ida_star(m.map_width+1)
+        i_t2 = time.time()
+        i_time = i_t2- i_t1 
+
+        if i_result != inf:
+            print("IDA* \nsortest route ", i_result, "\nTime spent: ", i_time)
+        else:
+            print("IDA* \nno route \nTime spent: ", i_time)
 
 if __name__ == "__main__":
     main()
