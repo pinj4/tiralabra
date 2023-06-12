@@ -14,7 +14,7 @@ def main():
         elif choose_map not in ["1", "2", "3", "4", "5", "6", "7"]:
             print("choose a number between 1-7")
             break
-        
+        ## ida*-algortimti toimii tällä hetkellä vasta kartoille 4 ja 6
         m = map_file.Map(f"map_{choose_map}.map")
 
         graph = m.get_graph()
