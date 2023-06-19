@@ -14,7 +14,17 @@ class Map():
     def get_graph(self):
         self.create_map()
         self.generate_graph()
-        return self.graph
+        return self.graph 
+    
+    def get_available_nodes_from_row(self, row):
+        nodes = []
+        node_num = self.map_width * (row-1)
+        for node in self._map_graph[row]:
+            if node != "@":
+                nodes.append(node_num)
+            node_num += 1
+        return nodes
+
           
     def create_map(self):
         try:
@@ -65,4 +75,3 @@ class Map():
                     if row - 1 > 0 and x + 1 < self.map_width:
                         self.add_edge(node, node-self.map_width + 1 , self._map_graph[row][x], self._map_graph[row-1][x+1], sqrt(2))
                 node += 1
-    
