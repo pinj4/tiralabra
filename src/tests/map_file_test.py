@@ -3,7 +3,7 @@ import map_file
 
 class TestGraph(unittest.TestCase):
     def setUp(self):
-        self.map = map_file.Map("map_4.map")
+        self.map = map_file.Map("map_3.map")
     
 
     def test_create_map_doesnt_work_with_wrong_file_name(self):
