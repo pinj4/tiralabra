@@ -14,7 +14,7 @@ class Map():
     def get_graph(self):
         self.create_map()
         self.generate_graph()
-        return self.graph 
+        return self.graph
     
     def get_available_nodes_from_row(self, row):
         nodes = []
