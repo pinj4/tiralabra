@@ -1,6 +1,12 @@
 from math import inf
 
 class IdaStar:
+    """ Class for implementing IDA*-algorithm.
+    It uses iterative deepening depth-first function with heurestic evaluation function
+    to find the shortest path between two points.
+
+    See more at https://en.wikipedia.org/wiki/Iterative_deepening_A*
+    """
     def __init__(self, graph, start_node, goal_node):
         self.graph = graph
         self.start_node = start_node
@@ -9,17 +15,20 @@ class IdaStar:
         self.distance = {}
 
     def ida_star(self):
-        threshold = self.heuristics(self.start_node) 
+        threshold = self.heuristics(self.start_node)
         path = [self.start_node]
         while True:
             temp = self.search(path, 0, threshold)
-            if temp == "FOUND": 
+            if temp == "FOUND":
                 return len(path)
             else:
                 return inf
             threshold = temp
 
     def sort_neighbours(self, node):
+        """Function for sorting node's neighbours by (distance + heurestics) from lowest to highest
+        """
+
         neighbours = []
         for neighbour, weight in self.graph[node]:
             if neighbour not in self.estimate:
@@ -31,10 +40,19 @@ class IdaStar:
             sorted_neighbours.append((j[0], j[1]))
         return sorted_neighbours
         
-
-
     def search(self, path, distance, threshold):
-        current_node = path[-1] 
+        """iterative funtion that finds the shortest path between two points.
+
+        Args:
+            path (list): current search path
+            distance (int): current distance from starting node
+            threshold (int): estimated cost of the cheapest path
+
+        Returns:
+            str "FOUND" if there is a path between selected points
+            int "inf" if there isn't one
+        """
+        current_node = path[-1]
         self.distance[current_node] = distance
         self.estimate[current_node] = distance + self.heuristics(current_node) 
         if self.estimate[current_node] > threshold:
@@ -56,4 +74,3 @@ class IdaStar:
 
     def heuristics(self, current_node):
         return abs(current_node - self.goal_node)
-

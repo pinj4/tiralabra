@@ -2,6 +2,11 @@ from heapq import heappush, heappop
 from math import inf
 
 class Dijkstra:
+    """ Class for implementing Dijkstra's algorithm.
+    Finds the shortest route between two points in a weighted graph.
+
+    See more at https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+    """
     def __init__(self, g, n, start_node, goal_node):
         self.n = n
         self.g = g
