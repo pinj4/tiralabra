@@ -9,6 +9,8 @@
 
 [Testaussdokumentti](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/testausdokumentti.md)
 
+[Käyttöohje](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/kayttoohje.md)
+
 ### Viikkoraportit
 - [Viikko 1](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_1.md)
 - [Viikko 2](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_2.md)
