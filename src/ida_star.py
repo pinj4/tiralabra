@@ -16,11 +16,12 @@ class IdaStar:
 
     def ida_star(self):
         threshold = self.heuristics(self.start_node)
-        path = [self.start_node]
+        path = [(self.start_node,0)]
         while True:
             temp = self.search(path, 0, threshold)
             if temp == "FOUND":
-                return len(path)
+                dist = sum(float(weight) for child, weight in path)
+                return dist
             else:
                 return inf
             threshold = temp
@@ -52,7 +53,7 @@ class IdaStar:
             str "FOUND" if there is a path between selected points
             int "inf" if there isn't one
         """
-        current_node = path[-1]
+        current_node = path[-1][0]
         self.distance[current_node] = distance
         self.estimate[current_node] = distance + self.heuristics(current_node) 
         if self.estimate[current_node] > threshold:
@@ -62,15 +63,15 @@ class IdaStar:
         minim_weight = inf
         neighbours = self.sort_neighbours(current_node)
         for child, weight in neighbours:
-            if child not in path:
-                path.append(child)
+            if (child,weight) not in path:
+                path.append((child, weight))
                 temp = self.search(path, distance + weight, threshold)
                 if temp == "FOUND":
                     return "FOUND"
                 elif temp < minim_weight:
                     minim_weight = temp
                 path.pop()
-        return minim_weight if minim_weight != inf else inf
+        return minim_weight #if minim_weight != inf else inf
 
     def heuristics(self, current_node):
         return abs(current_node - self.goal_node)
