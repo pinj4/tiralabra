@@ -2,16 +2,18 @@ from heapq import heappush, heappop
 from math import inf
 
 class Dijkstra:
-    def __init__(self, g, n):
+    def __init__(self, g, n, start_node, goal_node):
         self.n = n
         self.g = g
+        self.start_node = start_node
+        self.goal_node = goal_node
     
 
     def dijkstra(self):
         distances = [inf] * (self.n * self.n)  
-        distances[self.n+1] = 0
+        distances[self.start_node] = 0
         heap = []
-        heappush(heap, (0,self.n+1))
+        heappush(heap, (0, self.start_node))
         done = []
 
         while len(heap) > 0:
@@ -26,6 +28,6 @@ class Dijkstra:
                     distances[child[0]] = distances[node] + child[1]
                     heappush(heap, (distances[child[0]], child[0]))
 
-        return distances[-1]
+        return distances[self.goal_node]
 
 
