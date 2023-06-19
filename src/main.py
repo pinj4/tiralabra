@@ -56,9 +56,9 @@ def main():
         d_time = d_t2 - d_t1
 
         if d_result != inf:
-            print("Dijkstra \nshortest route: ", d_result, "\nTime spent: ", d_time)
+            print("\nDijkstra \nshortest route: ", d_result, "\nTime spent: ", d_time)
         else:
-            print("Dijkstra \nno route \nTime spent: ", d_time)
+            print("\nDijkstra \nno route \nTime spent: ", d_time)
 
         IDA = ida_star.IdaStar(graph, int(start_node), int(goal_node))
         i_t1 = time.time()
@@ -67,9 +67,9 @@ def main():
         i_time = i_t2- i_t1 
 
         if i_result != inf:
-            print("IDA* \nsortest route ", i_result, "\nTime spent: ", i_time)
+            print("\nIDA* \nshortest route ", i_result, "\nTime spent: ", i_time, "\n")
         else:
-            print("IDA* \nno route \nTime spent: ", i_time)
+            print("\nIDA* \nno route \nTime spent: ", i_time, "\n")
 
 if __name__ == "__main__":
     main()
