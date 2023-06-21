@@ -16,7 +16,7 @@ class TestGraph(unittest.TestCase):
         sys.stdout = sys.__stdout__
         self.assertEqual(output.getvalue(), "goodbye\n")
     
-    @mock.patch('main.input', return_value = "3")
+    @mock.patch('main.input', return_value = "1")
     def test_gets_the_right_map(self, input):
         output = io.StringIO()
         sys.stdout = output
@@ -30,11 +30,11 @@ class TestGraph(unittest.TestCase):
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
-        self.assertEqual(output.getvalue(), "choose a number between 1-6\n")
+        self.assertEqual(output.getvalue(), "choose a number between 1-3\n")
     
     @mock.patch('main.input', create=True)
     def test_start_row_out_of_range_works(self, input):
-        input.side_effect = ["4", "10"]
+        input.side_effect = ["1", "10"]
         output = io.StringIO()
         sys.stdout = output
         main()
@@ -43,7 +43,7 @@ class TestGraph(unittest.TestCase):
 
     @mock.patch('main.input', create=True)
     def test_start_node_unavailable(self, input):
-        input.side_effect = ["4", "1", "0"]
+        input.side_effect = ["1", "1", "0"]
         output = io.StringIO()
         sys.stdout = output
         main()
