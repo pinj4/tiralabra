@@ -7,7 +7,7 @@
 
 [Toteutusdokumentti](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/toteutusdokumentti.md)
 
-[Testaussdokumentti](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/testausdokumentti.md)
+[Testausdokumentti](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/testausdokumentti.md)
 
 [Käyttöohje](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/kayttoohje.md)
 
