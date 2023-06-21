@@ -76,7 +76,7 @@ class IdaStar:
                 if temp < minim_weight:
                     minim_weight = temp
                 path.pop()
-        return minim_weight if minim_weight != inf else inf
+        return minim_weight 
 
     def heuristics(self, current_node):
         node_y = current_node / self.n
