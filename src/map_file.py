@@ -1,4 +1,5 @@
 from math import inf, sqrt
+import copy
 
 class Map():
     def __init__(self, file):
@@ -10,6 +11,23 @@ class Map():
     
     def print_map(self):
         print(self.map)
+    
+    def update_map(self, path:list):
+        updated = copy.deepcopy(self._map_graph)
+        for node in path:
+            node_y = node / self.map_width
+            node_y = int(node_y) 
+            node_x = node - (self.map_width * node_y) + 1
+            for y in range(len(updated)):
+                for x in range(len(updated[y])):
+                    if y == int(node_y+1) and x+1 == node_x:
+                        updated[y][x] = "X"
+
+        return updated
+    
+    def print_updated(self, updated):
+        for row in updated:
+            print(''.join(row))
     
     def get_graph(self):
         self.create_map()
@@ -24,7 +42,6 @@ class Map():
                 nodes.append(node_num)
             node_num += 1
         return nodes
-
           
     def create_map(self):
         try:
