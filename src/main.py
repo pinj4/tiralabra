@@ -7,12 +7,12 @@ import ida_star
 def main():
     import time
     while True:
-        choose_map = input("Choose map 1-3 or type q to quit: ")
+        choose_map = input("Choose map 1-4 or type q to quit: ")
         if choose_map == "q":
             print("goodbye")
             break
-        elif choose_map not in ["1", "2", "3"]:
-            print("choose a number between 1-3")
+        elif choose_map not in ["1", "2", "3", "4"]:
+            print("choose a number between 1-4")
             break
         m = map_file.Map(f"map_{choose_map}.map")
 
