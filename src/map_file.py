@@ -83,6 +83,14 @@ class Map():
             for x in range(len(self._map_graph[row])):
                 n = self._map_graph[row][x]
                 if n != "@":
+                    ## aloitussolmuun yhteys
+                    if node == 1: ## toka solmu
+                        self.add_edge(node, 0, self._map_graph[row][x],self._map_graph[1][0], 1)
+                    elif node == self.map_width: ## alotussolmun alempi
+                        self.add_edge(node, 0, self._map_graph[row][x], self._map_graph[1][0], 1)
+                    elif node == self.map_width + 1: ## alotussolmusta viistoon alas
+                        self.add_edge(node, 0, self._map_graph[row][x], self._map_graph[1][0], sqrt(2))
+                    ## edellinen solmu ja ylempi solmu
                     if row - 1 > 0 and x - 1 > 0:
                         self.add_edge(node, node-1, self._map_graph[row][x],self._map_graph[row][x-1], 1)
                         self.add_edge(node, node-self.map_width, self._map_graph[row][x], self._map_graph[row-1][x], 1)
@@ -92,3 +100,9 @@ class Map():
                     if row - 1 > 0 and x + 1 < self.map_width:
                         self.add_edge(node, node-self.map_width + 1 , self._map_graph[row][x], self._map_graph[row-1][x+1], sqrt(2))
                 node += 1
+
+if __name__ == "__main__":
+    m3 = Map("map_3.map")
+    graph = m3.get_graph()
+    print(graph)
+    print(m3._map_graph[1][0])
