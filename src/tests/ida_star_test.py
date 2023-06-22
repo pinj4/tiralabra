@@ -15,8 +15,8 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(result, 2.8284271247461903)
     
     def test_finds_no_route(self):
-        map3 = map_file.Map("map_3.map")
-        graph = map3.get_graph()
-        i = ida_star.IdaStar(graph, 0, 1023, map3.map_width)
+        map2 = map_file.Map("map_2.map")
+        graph = map2.get_graph()
+        i = ida_star.IdaStar(graph, 8, 20, map2.map_width)
         result, path = i.ida_star()
         self.assertEqual(result, inf)

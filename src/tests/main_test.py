@@ -30,7 +30,7 @@ class TestGraph(unittest.TestCase):
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
-        self.assertEqual(output.getvalue(), "choose a number between 1-3\n")
+        self.assertEqual(output.getvalue(), "choose a number between 1-4\n")
     
     @mock.patch('main.input', create=True)
     def test_start_row_out_of_range_works(self, input):
