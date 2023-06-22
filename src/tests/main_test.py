@@ -39,16 +39,16 @@ class TestGraph(unittest.TestCase):
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
-        self.assertIn("that row is out of range", output.getvalue())
+        self.assertIn("row is out of range", output.getvalue())
 
     @mock.patch('main.input', create=True)
-    def test_start_node_unavailable(self, input):
-        input.side_effect = ["1", "1", "0"]
+    def test_node_unavailable(self, input):
+        input.side_effect = ["1", "2", "0"]
         output = io.StringIO()
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
-        self.assertIn("that node is unavailable", output.getvalue())
+        self.assertIn("node is unavailable", output.getvalue())
 
 
 
