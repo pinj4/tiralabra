@@ -29,6 +29,21 @@ class Map():
         for row in updated:
             print(''.join(row))
     
+    def get_updated(self, updated):
+        new = []
+        for row in updated:
+            r = ''.join(row)
+            new.append(r)
+        return new 
+
+    def print_labels(self):
+        print("Dijkstra map:", "{:>{}} {:{}}".format( "IDA*",self.map_width-3 , "map:", self.map_width))
+    
+    def print_maps(self, map1, map2):
+        for row in range(len(map1)):
+            print(map1[row],"     ", map2[row])
+
+    
     def get_graph(self):
         self.create_map()
         self.generate_graph()
