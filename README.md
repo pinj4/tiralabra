@@ -17,3 +17,4 @@
 - [Viikko 3](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_3.md)
 - [Viikko 4](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_4.md)
 - [Viikko 5](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_5.md)
+- [Viikko 6](https://github.com/pinj4/tiralabra/blob/main/dokumentointi/viikkoraportti_6.md)
