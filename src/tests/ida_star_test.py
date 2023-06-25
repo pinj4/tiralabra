@@ -19,4 +19,11 @@ class TestGraph(unittest.TestCase):
         graph = map2.get_graph()
         i = ida_star.IdaStar(graph, 8, 20, map2.map_width)
         result, path = i.ida_star()
-        self.assertEqual(result, inf)
+        self.assertEqual((result, path), (inf, []))
+    
+    def test_finds_the_right_path(self):
+        map1 = map_file.Map("map_1.map")
+        graph = map1.get_graph()
+        i = ida_star.IdaStar(graph, 5, 15, map1.map_width)
+        result, path = i.ida_star()
+        self.assertEqual([5, 10, 15], path)

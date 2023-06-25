@@ -3,6 +3,8 @@ import sys
 import unittest
 from unittest import mock
 from main import main
+import dijkstra
+import ida_star
 
 class TestGraph(unittest.TestCase):
     def setUp(self):
@@ -49,6 +51,23 @@ class TestGraph(unittest.TestCase):
         main()
         sys.stdout = sys.__stdout__
         self.assertIn("node is unavailable", output.getvalue())
-
-
+    
+    @mock.patch('main.input', create=True)
+    def test_no_available_nodes(self, input):
+        input.side_effect = ["1", "1"]
+        output = io.StringIO()
+        sys.stdout = output
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("no available nodes", output.getvalue())
+    
+    @mock.patch('main.input', create=True)
+    def test_start_and_end_nodes_cant_be_same(self, input):
+        input.side_effect = ["1", "2", "6", "2", "6"]
+        output = io.StringIO()
+        sys.stdout = output
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("Choose different points", output.getvalue())
+        
 
