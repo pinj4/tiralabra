@@ -26,7 +26,7 @@ class IdaStar:
                 shortest_path = [node for node,_ in path]
                 return dist, shortest_path
             if temp == inf: 
-                return inf, inf
+                return inf, []
             threshold = temp
 
     def sort_neighbours(self, node):

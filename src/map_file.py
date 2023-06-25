@@ -24,11 +24,7 @@ class Map():
                         updated[y][x] = "X"
 
         return updated
-    
-    def print_updated(self, updated):
-        for row in updated:
-            print(''.join(row))
-    
+
     def get_updated(self, updated):
         new = []
         for row in updated:
@@ -38,17 +34,16 @@ class Map():
 
     def print_labels(self):
         print("Dijkstra map:", "{:>{}} {:{}}".format( "IDA*",self.map_width-3 , "map:", self.map_width))
-    
+
     def print_maps(self, map1, map2):
         for row in range(len(map1)):
             print(map1[row],"     ", map2[row])
 
-    
     def get_graph(self):
         self.create_map()
         self.generate_graph()
         return self.graph
-    
+
     def get_available_nodes_from_row(self, row):
         nodes = []
         node_num = self.map_width * (row-1)
@@ -57,7 +52,7 @@ class Map():
                 nodes.append(node_num)
             node_num += 1
         return nodes
-          
+
     def create_map(self):
         try:
             self.map_file_contents()
