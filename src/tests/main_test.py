@@ -22,13 +22,32 @@ class TestGraph(unittest.TestCase):
     
 
     @mock.patch('main.input', create = True)
-    def test_input_q_breaks_loop_when_choosing_a_node(self, input):
+    def test_input_q_breaks_loop_when_choosing_the_start_node(self, input):
         input.side_effect = ["1", "2", "q"]
         output = io.StringIO()
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
         self.assertIn("goodbye", output.getvalue())
+    
+    @mock.patch('main.input', create = True)
+    def test_input_q_breaks_loop_when_choosing_the_goal_row(self, input):
+        input.side_effect = ["1", "2", "2", "q"]
+        output = io.StringIO()
+        sys.stdout = output
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("goodbye", output.getvalue())
+    
+    @mock.patch('main.input', create = True)
+    def test_input_q_breaks_loop_when_choosing_the_goal_node(self, input):
+        input.side_effect = ["1", "2", "2", "3", "q"]
+        output = io.StringIO()
+        sys.stdout = output
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("goodbye", output.getvalue())
+    
     
     @mock.patch('main.input', create=True)
     def test_gets_the_right_map(self, input):
@@ -56,10 +75,28 @@ class TestGraph(unittest.TestCase):
         main()
         sys.stdout = sys.__stdout__
         self.assertIn("row is out of range", output.getvalue())
+    
+    @mock.patch('main.input', create=True)
+    def test_goal_row_out_of_range_works(self, input):
+        input.side_effect = ["1", "2", "2", "10", "q"]
+        output = io.StringIO()
+        sys.stdout = output
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("row is out of range", output.getvalue())
 
     @mock.patch('main.input', create=True)
-    def test_node_unavailable(self, input):
+    def test_start_node_unavailable(self, input):
         input.side_effect = ["1", "2", "0", "q"]
+        output = io.StringIO()
+        sys.stdout = output
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("node is unavailable", output.getvalue())
+    
+    @mock.patch('main.input', create=True)
+    def test_goal_node_unavailable(self, input):
+        input.side_effect = ["1", "2", "2", "4", "1", "q"]
         output = io.StringIO()
         sys.stdout = output
         main()
@@ -114,12 +151,12 @@ class TestGraph(unittest.TestCase):
 
     @mock.patch('main.input', create=True)
     def test_returns_a_correct_run_time_idastar(self, input):
-        input.side_effect = ["2", "2", "2", "7", "7", "q"]
+        input.side_effect = ["2", "2", "4", "7", "4", "q"]
         output = io.StringIO()
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
-        self.assertIn(f"IDA* \nshortest route  7.657 \nTime spent:  0.000{3 or 4}", output.getvalue())
+        self.assertIn(f"IDA* \nshortest route  5.0 \nTime spent:  0.0001", output.getvalue())
     
     @mock.patch('main.input', create=True)
     def test_found_a_shorter_route(self, input):
