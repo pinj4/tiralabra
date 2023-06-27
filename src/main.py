@@ -13,7 +13,7 @@ def main():
             break
         elif choose_map not in ["1", "2", "3", "4"]:
             print("choose a number between 1-4")
-            break
+            continue
         m = map_file.Map(f"map_{choose_map}.map")
 
         graph = m.get_graph()
@@ -21,39 +21,55 @@ def main():
         map_width = m.map_width
 
         start_y = input(f"Choose a row for the starting point from 1-{map_width}: ")
+        if start_y == "q":
+            print("goodbye")
+            break
+
         if int(start_y) not in range(1, map_width+1):
             print("row is out of range")
-            break 
+            continue
+
         nodes = m.get_available_nodes_from_row(int(start_y))
         if nodes == []:
             print("no available nodes")
-            break
+            continue
 
         start_node = input(f"Choose an available node from row {start_y}: {nodes}: ")
+        if start_node == "q":
+            print("goodbye")
+            break
+
         if int(start_node) not in nodes:
             print("node is unavailable")
-            break
-        
+            continue
+
         goal_y = input(f"Choose a row for the goal point from 1-{map_width}: ")
+        if goal_y == "q":
+            print("goodbye")
+            break
         if int(goal_y) not in range(1, map_width+1):
             print("row is out of range")
-            break 
+            continue
         nodes = m.get_available_nodes_from_row(int(goal_y))
         if nodes == []:
             print("no available nodes")
-            break
+            continue
 
         goal_node = input(f"Choose available node from row {goal_y}: {nodes}: ")
+        if goal_node == "q":
+            print("goodbye")
+            break
         if int(goal_node) not in nodes:
             print("node is unavailable")
-            break
+            continue
 
         if start_node == goal_node:
             print("Choose different points")
-            break
-        
-        
-        print("\nstart node: ", start_node, " end node: ", goal_node, "\n")
+            continue
+        print(f"\nstart node: [row {start_y}, node {start_node}] end node: [row {goal_y}, node {goal_node}]\n")
+
+        start_node = ((int(start_y)-1) * m.map_width) + (int(start_node)-1)
+        goal_node = ((int(goal_y)-1) * m.map_width) + (int(goal_node)-1)
 
 
         d = dijkstra.Dijkstra(graph, m.map_width, int(start_node), int(goal_node))
@@ -80,7 +96,7 @@ def main():
 
             m.print_labels()
             m.print_maps(d_map, i_map)
-            
+
             print("\nDijkstra \nshortest route: ", round(float(d_result), 3), "\nTime spent: ", round(d_time, 10), "seconds")
 
             print("\nIDA* \nshortest route ", round(i_result, 3), "\nTime spent: ", round(i_time, 10),"seconds" "\n")
@@ -89,21 +105,23 @@ def main():
         else:
             print("\nDijkstra \nno route \nTime spent: ", round(d_time, 10), "seconds")
             print("\nIDA* \nno route \nTime spent: ", round(i_time, 10), "seconds" "\n")
-        
+
         if d_time < i_time:
             print("\nDijkstra took ", round((i_time-d_time), 10), "seconds less than IDA*-algorithm")
         elif i_time < d_time:
             print("\nIDA* took ", round((d_time - i_time), 10), "seconds less than Dijsktra's algorithm")
         elif i_time == d_time:
-            print("\nDijkstra and IDA* algorithms spent the same time")
-        
+            print("\nDijkstra and IDA* algorithms spent the same amount of time")
+
         if i_result == d_result and i_result != inf:
             print("Both algorithms found equally short routes\n")
         elif d_result < i_result and d_result != inf:
             print("Dijkstra found a shorter route than IDA*\n")
         elif i_result < d_result and i_result != inf:
             print("IDA* found a shorter route than Dijsktra\n")
-        
+        else:
+            print("\n")
+
 
 
 if __name__ == "__main__":

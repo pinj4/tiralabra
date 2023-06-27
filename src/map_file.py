@@ -46,7 +46,7 @@ class Map():
 
     def get_available_nodes_from_row(self, row):
         nodes = []
-        node_num = self.map_width * (row-1)
+        node_num = 1 
         for node in self._map_graph[row]:
             if node != "@":
                 nodes.append(node_num)
