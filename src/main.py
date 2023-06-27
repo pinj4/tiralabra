@@ -63,7 +63,7 @@ def main():
             print("node is unavailable")
             continue
 
-        if start_node == goal_node:
+        if start_node == goal_node and start_y == goal_y:
             print("Choose different points")
             continue
         print(f"\nstart node: [row {start_y}, node {start_node}] end node: [row {goal_y}, node {goal_node}]\n")
