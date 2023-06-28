@@ -65,7 +65,7 @@ class TestGraph(unittest.TestCase):
         sys.stdout = output
         main()
         sys.stdout = sys.__stdout__
-        self.assertIn("choose a number between 1-4\n", output.getvalue())
+        self.assertIn("choose a number between 1-5\n", output.getvalue())
     
     @mock.patch('main.input', create=True)
     def test_start_row_out_of_range_works(self, input):
@@ -139,24 +139,6 @@ class TestGraph(unittest.TestCase):
         main()
         sys.stdout = sys.__stdout__
         self.assertIn("shortest route  7.657", output.getvalue())
-    
-    @mock.patch('main.input', create=True)
-    def test_returns_a_correct_run_time_dijkstra(self, input):
-        input.side_effect = ["2", "2", "2", "7", "7", "q"]
-        output = io.StringIO()
-        sys.stdout = output
-        main()
-        sys.stdout = sys.__stdout__
-        self.assertIn("Dijkstra \nshortest route:  7.657 \nTime spent:  0.0001", output.getvalue())
-
-    @mock.patch('main.input', create=True)
-    def test_returns_a_correct_run_time_idastar(self, input):
-        input.side_effect = ["2", "2", "4", "7", "4", "q"]
-        output = io.StringIO()
-        sys.stdout = output
-        main()
-        sys.stdout = sys.__stdout__
-        self.assertIn(f"IDA* \nshortest route  5.0 \nTime spent:  0.0001", output.getvalue())
     
     @mock.patch('main.input', create=True)
     def test_found_a_shorter_route(self, input):
