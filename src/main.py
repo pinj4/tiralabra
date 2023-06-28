@@ -7,12 +7,12 @@ import ida_star
 def main():
     import time
     while True:
-        choose_map = input("Choose map 1-4 or type q to quit: ")
+        choose_map = input("Choose map 1-5 or type q to quit: ")
         if choose_map =="q":
             print("goodbye")
             break
-        elif choose_map not in ["1", "2", "3", "4"]:
-            print("choose a number between 1-4")
+        elif choose_map not in ["1", "2", "3", "4", "5"]:
+            print("choose a number between 1-5")
             continue
         m = map_file.Map(f"map_{choose_map}.map")
 
@@ -86,7 +86,7 @@ def main():
         i_t2 = time.time()
         i_time = i_t2- i_t1 
 
-        if i_result != inf and d_result != inf:
+        if i_result != inf or d_result != inf:
 
             d_updated_map = m.update_map(d_path)
             d_map = m.get_updated(d_updated_map)
