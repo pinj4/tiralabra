@@ -4,13 +4,15 @@
 - Ohjelmointikieli: Python
 - Opinto-ohjelma: Tietojenkäsittelytieteen kandi
 
-Toteutan ohjelman, joka löytää verkon lyhyimmän reitin pisteestä toiseen kahdella eri algoritmillä. Kartassa voidaan liikkua sivusuuntiin sekä diagonaalisesti. Vertailen tässä Dijsktra ja IDA* algoritmia. Käytän ohjelmassa Movin AI LAb:in sivuilta ladattuja [MAPF-karttoja](https://www.movingai.com/benchmarks/mapf/index.html)
+Toteutan ohjelman, joka löytää verkon lyhyimmän reitin pisteestä toiseen kahdella eri algoritmillä. Kartassa voidaan liikkua sivusuuntiin sekä diagonaalisesti. Vertailen tässä Dijsktra ja IDA* algoritmia. Käytän ohjelmassa Movin AI LAb:in sivuilta ladattuja [MAPF-karttoja](https://www.movingai.com/benchmarks/mapf/index.html) sekä muutamia samassa muodossa olevia itseluotuja karttoja. 
 
 ## Algoritmit
 
 Valitsin Dijkstran algortimin, koska minulla on tästä jo etukäteen tietoa. IDA*-algoritmin valitsin, koska se vaikutti mielenkiintoiselta, sekä tarpeeksi erilaiselta Dijkstraan verrattuna. Näin siis suoritusteen vertailussakin on jotain järkeä.
 
 ### Dijkstra
+
+- algoritmi etsii alkupisteestä lyhyimmän reitin kaikkiin muihin pisteisiin. Se asettaa ensin etäisyydet alkupisteestä muihin pisteisiin äärettömäksi. Sen jälkeen se käy solmuja läpi kerroksittain parantaen niiden etäisyyttä, kunnes kaikki solmut on käyty läpi ja voidaann olettaa, että tiedossa on lyhin mahdollinen polku.
 
 Aikavaativuus: 
 O(|E| + |V| log |V|), jossa V on solmujen lukumäärä ja E on kaarien lukumäärä
@@ -20,9 +22,10 @@ O(V^2), jossa V on solmujen lukumäärä
 
 
 ### IDA*
+- Algoritmi käy solmuja läpi syvyyshaulla, jota on tehostettu heurestiikka-funktiolla. Syvyyshaun jokaisella kierroksella se siis karsii pois solmut, joiden arvioitu etäisyys ylittäisi annetun raja-arvon. Raja-arvo koostuu aluksi aloitussolmun heurestisesta arviosta, jonka jälkeen se suurenee jokaisella kierroksella vastaamaan vähimmäisarvoa kaikista edellisistä arvoista, jotka ylittivät raja-arvon.
 
 Aikavaativuus: 
-IDA* algoritmille ei ole yksiselitteistä parasta aikavaativuutta, vaan se riippuu painotetun verkon tyypistä ja heurestiikasta.
+IDA*-algoritmille ei ole yksiselitteistä parasta aikavaativuutta, vaan se riippuu painotetun verkon tyypistä ja heurestiikasta.
 
 Tilavaativuus:
 O(d), jossa d on reitin pituus
