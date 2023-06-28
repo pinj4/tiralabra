@@ -23,7 +23,7 @@ O(V^2), jossa V on solmujen lukumäärä
 
 ### IDA*
 
-Algoritmi käy solmuja läpi syvyyshaulla, jota on tehostettu heurestiikka-funktiolla. Syvyyshaun jokaisella kierroksella se karsii pois solmut, joiden arvioitu etäisyys ylittäisi annetun raja-arvon. Raja-arvo koostuu aluksi aloitussolmun heurestisesta arviosta, jonka jälkeen se suurenee jokaisella kierroksella vastaamaan vähimmäisarvoa kaikista edellisistä arvoista, jotka ylittivät raja-arvon.
+Algoritmi käyttää syvyyshakua solmujen läpikäymiseen ja hyödyntää heurestiikkafunktiota tehokkuuden parantamiseksi. Jokaisella syvyyshaun kierroksella se rajaa pois solmut, joiden arvioitu etäisyys ylittää annetun raja-arvon. Raja-arvo alkaa aloitussolmun heurestisella arviolla ja kasvaa kierros kierrokselta vastaamaan vähimmäisarvoa kaikista edellisistä raja-arvoista, jotka ylittivät sen.
 
 Aikavaativuus: 
 IDA*-algoritmille ei ole yksiselitteistä parasta aikavaativuutta, vaan se riippuu painotetun verkon tyypistä ja heurestiikasta.
