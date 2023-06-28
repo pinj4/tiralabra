@@ -13,23 +13,23 @@
 ## Aika- ja tilavaativuudet
 
 Dijkstra
-> Aikavaativuus: 
-> O(|E| + |V| log |V|), jossa V on solmujen lukumäärä ja E on kaarien lukumäärä
->
-> Tilavaativuus: 
-> O(V^2), jossa V on solmujen lukumäärä
+Aikavaativuus:
+O(|E| + |V| log |V|), jossa V on solmujen lukumäärä ja E on kaarien lukumäärä
+
+Tilavaativuus: 
+O(V^2), jossa V on solmujen lukumäärä
 
 IDA*
-> Aikavaativuus: 
-> IDA*-algoritmille ei ole yksiselitteistä parasta aikavaativuutta, vaan se riippuu painotetun verkon tyypistä ja heurestiikasta.
->
-> Tilavaativuus:
-> O(d), jossa d on reitin pituus
+Aikavaativuus: 
+IDA*-algoritmille ei ole yksiselitteistä parasta aikavaativuutta, vaan se riippuu painotetun verkon tyypistä ja heurestiikasta.
+
+Tilavaativuus:
+O(d), jossa d on reitin pituus
 
 ## Suorituskyky- ja O-analyysivertailu
 
 | kartta | solmujen määrä | O(|E| + |V| log |V|)| Dijkstran 10:n toiston keskiarvo| IDA*:n 10:n toiston keskiarvo |
-|:------:|:--------------:|:-------------------:|:-------------------------------:|:-----------------------------:|
+|--------|----------------|---------------------|--------------------------------|--------------------------------|
 |4x4     |16              |80                   |0.0001039                        |0.0002835                      |
 |8x8     |64              |410                  |0.0001215                        |0.0003617                      |
 |16x16   |256             |2350                 |0.0009472                        |0.0551402                      |
