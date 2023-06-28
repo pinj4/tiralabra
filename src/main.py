@@ -113,11 +113,11 @@ def main():
         elif i_time == d_time:
             print("\nDijkstra and IDA* algorithms spent the same amount of time")
 
-        if i_result == d_result and i_result != inf:
+        if round(i_result, 3) == round(float(d_result), 3) and i_result != inf:
             print("Both algorithms found equally short routes\n")
-        elif d_result < i_result and d_result != inf:
+        elif round(float(d_result), 3) < round(i_result, 3) and d_result != inf:
             print("Dijkstra found a shorter route than IDA*\n")
-        elif i_result < d_result and i_result != inf:
+        elif round(i_result, 3) < round(float(d_result), 3) and i_result != inf:
             print("IDA* found a shorter route than Dijsktra\n")
         else:
             print("\n")
