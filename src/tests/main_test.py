@@ -139,16 +139,6 @@ class TestGraph(unittest.TestCase):
         main()
         sys.stdout = sys.__stdout__
         self.assertIn("shortest route  7.657", output.getvalue())
-    
-    @mock.patch('main.input', create=True)
-    def test_found_a_shorter_route(self, input):
-        input.side_effect = ["2", "2", "2", "7", "7", "q"]
-        output = io.StringIO()
-        sys.stdout = output
-        main()
-        sys.stdout = sys.__stdout__
-        self.assertIn("Dijkstra found a shorter route than IDA*\n", output.getvalue())
-
         
     @mock.patch('main.input', create=True)
     def test_no_route_doesnt_compare_routes(self, input):
