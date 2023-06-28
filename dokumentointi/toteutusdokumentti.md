@@ -12,14 +12,16 @@
 
 ## Aika- ja tilavaativuudet
 
-Dijkstra
+### Dijkstra
+
 Aikavaativuus:
 O(|E| + |V| log |V|), jossa V on solmujen lukumäärä ja E on kaarien lukumäärä
 
 Tilavaativuus: 
 O(V^2), jossa V on solmujen lukumäärä
 
-IDA*
+### IDA*
+
 Aikavaativuus: 
 IDA*-algoritmille ei ole yksiselitteistä parasta aikavaativuutta, vaan se riippuu painotetun verkon tyypistä ja heurestiikasta.
 
@@ -28,7 +30,7 @@ O(d), jossa d on reitin pituus
 
 ## Suorituskyky- ja O-analyysivertailu
 
-| kartta | solmujen määrä | O(|E| + |V| log |V|)| Dijkstran 10:n toiston keskiarvo| IDA*:n 10:n toiston keskiarvo |
+| kartta | solmujen määrä | O(E + V log V)      | Dijkstran 10:n toiston keskiarvo| IDA*:n 10:n toiston keskiarvo |
 | ------ | -------------- | ------------------- | ------------------------------- | ----------------------------- |
 | 4x4    | 16             | 80                  | 0.0001039                       | 0.0002835                     |
 | 8x8    | 64             | 410                 | 0.0001215                       | 0.0003617                     |
@@ -46,5 +48,7 @@ Työhön voisi myös lisätä ominaisuuden, jossa se käy reitin läpi automaatt
 ## Lähteet
 
 IDA*: https://en.wikipedia.org/wiki/Iterative_deepening_A*
+
 IDA* heurestiikka: https://www.growingwiththeweb.com/2012/06/a-pathfinding-algorithm.html 
+
 Dijkstra: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
