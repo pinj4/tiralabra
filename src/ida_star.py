@@ -16,27 +16,27 @@ class IdaStar:
         self.distance = {}
 
     def ida_star(self): 
-        threshold = self.heuristics(self.start_node)
+        threshold = self._heuristics(self.start_node)
         path = [(self.start_node,0)]
 
         while True:
-            temp = self.search(path, 0, threshold)
+            temp = self._search(path, 0, threshold)
             if temp == "FOUND":
                 dist = sum(float(weight) for _, weight in path)
                 shortest_path = [node for node,_ in path]
                 return dist, shortest_path
-            if temp == inf: 
+            if temp == inf:
                 return inf, []
             threshold = temp
 
-    def sort_neighbours(self, node):
+    def _sort_neighbours(self, node):
         """Function for sorting node's neighbours by (distance + heurestics) from lowest to highest
         """ 
 
         neighbours = []
         for neighbour, weight in self.graph[node]:
             if neighbour not in self.estimate:
-                self.estimate[neighbour] = self.distance[node] + self.heuristics(neighbour) + weight
+                self.estimate[neighbour] = self.distance[node] + self._heuristics(neighbour) + weight
             neighbours.append([neighbour, weight, self.estimate[neighbour]])
         neighbours.sort(key = lambda x: x[2])
         sorted_neighbours = []
@@ -44,7 +44,7 @@ class IdaStar:
             sorted_neighbours.append((j[0], j[1]))
         return sorted_neighbours
         
-    def search(self, path, distance, threshold):
+    def _search(self, path, distance, threshold):
         """iterative function that finds the shortest path between two points.
 
         Args:
@@ -57,7 +57,7 @@ class IdaStar:
             int "inf" if there isn't one
         """
         current_node = path[-1][0]
-        self.estimate[current_node] = distance + self.heuristics(current_node)
+        self.estimate[current_node] = distance + self._heuristics(current_node)
         self.distance[current_node] = distance
 
         if self.estimate[current_node] > threshold:
@@ -65,15 +65,15 @@ class IdaStar:
 
         if self.goal_node == current_node:
             return "FOUND"
-        
+
         minim_weight = inf
 
-        neighbours = self.sort_neighbours(current_node)
+        neighbours = self._sort_neighbours(current_node)
 
         for child, weight in neighbours:
             if (child, weight) not in path:
                 path.append((child, weight))
-                temp = self.search(path, distance + weight, threshold)
+                temp = self._search(path, distance + weight, threshold)
                 if temp == inf:
                     return inf
                 if temp == "FOUND":
@@ -84,7 +84,7 @@ class IdaStar:
 
         return minim_weight
 
-    def heuristics(self, current_node):
+    def _heuristics(self, current_node):
         ## solmujen x ja y koordinaatit
         node_y = current_node / self.n
         node_y = int(node_y)

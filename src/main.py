@@ -84,7 +84,7 @@ def main():
         i_t1 = time.time()
         i_result, i_path = IDA.ida_star()
         i_t2 = time.time()
-        i_time = i_t2- i_t1 
+        i_time = i_t2- i_t1
 
         if i_result != inf or d_result != inf:
 
@@ -99,12 +99,12 @@ def main():
 
             print("\nDijkstra \nshortest route: ", round(float(d_result), 3), "\nTime spent: ", round(d_time, 10), "seconds")
 
-            print("\nIDA* \nshortest route ", round(i_result, 3), "\nTime spent: ", round(i_time, 10),"seconds" "\n")
+            print("\nIDA* \nshortest route ", round(i_result, 3), "\nTime spent: ", round(i_time, 10),"seconds\n")
 
 
         else:
             print("\nDijkstra \nno route \nTime spent: ", round(d_time, 10), "seconds")
-            print("\nIDA* \nno route \nTime spent: ", round(i_time, 10), "seconds" "\n")
+            print("\nIDA* \nno route \nTime spent: ", round(i_time, 10), "seconds\n")
 
         if d_time < i_time:
             print("\nDijkstra took ", round((i_time-d_time), 10), "seconds less than IDA*-algorithm")

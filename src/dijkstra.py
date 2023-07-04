@@ -37,11 +37,11 @@ class Dijkstra:
         return distances[self.goal_node]
 
     def get_path(self):
-        S = []
+        s = []
         u = self.goal_node
         while self.prev[u] != -1:
-            S.append(u)
+            s.append(u)
             u = self.prev[u]
-        S.append(self.start_node)
-        S.reverse()
-        return S
+        s.append(self.start_node)
+        s.reverse()
+        return s

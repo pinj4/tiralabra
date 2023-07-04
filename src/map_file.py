@@ -13,6 +13,14 @@ class Map():
         print(self.map)
     
     def update_map(self, path:list):
+        """function for "drawing on" a path the algorithm chose
+
+        Args:
+            path (list): nodes in the chosen path
+
+        Returns:
+            list: graph with Xs marking the path
+        """
         updated = copy.deepcopy(self._map_graph)
         for node in path:
             node_y = node / self.map_width
@@ -26,11 +34,19 @@ class Map():
         return updated
 
     def get_updated(self, updated):
+        """function for formatting the map with the drawn on path
+
+        Args:
+            updated (list): graph with Xs marking the path
+
+        Returns:
+            list: graph with Xs mrking the path formatted for printing
+        """
         new = []
         for row in updated:
             r = ''.join(row)
             new.append(r)
-        return new 
+        return new
 
     def print_labels(self):
         print("Dijkstra map:", "{:>{}} {:{}}".format( "IDA*",self.map_width-3 , "map:", self.map_width))
@@ -41,7 +57,7 @@ class Map():
 
     def get_graph(self):
         self.create_map()
-        self.generate_graph()
+        self._generate_graph()
         return self.graph
 
     def get_available_nodes_from_row(self, row):
@@ -55,12 +71,14 @@ class Map():
 
     def create_map(self):
         try:
-            self.map_file_contents()
+            self._map_file_contents()
             return "Done"
         except:
             return "wrong file"
 
-    def map_file_contents(self):
+    def _map_file_contents(self):
+        """function for reading and formatting the map's file
+        """
         map_contents = []
         with open(f"src/maps/{self.file}") as map_file:
             contents = map_file.read()
@@ -78,15 +96,17 @@ class Map():
                     row = []
         self.map_width = int("".join(map(str, width)))
         self._map_graph = map_contents
-    
+
     def add_edge(self, a, b, node_a, node_b, weight):
         if a >= 0 and b >= 0:
             if node_a != "@" and node_b != "@":   
                 self.graph[a].append((b, weight))   
                 self.graph[b].append((a, weight))
 
-    
-    def generate_graph(self):
+
+    def _generate_graph(self):
+        """function for creating a graph for the algorithms to use
+        """
         self.graph = [[] for _ in range(self.map_width*self.map_width)]
         node = 0
         for row in range(len(self._map_graph)):
@@ -110,9 +130,3 @@ class Map():
                     if row - 1 > 0 and x + 1 < self.map_width:
                         self.add_edge(node, node-self.map_width + 1 , self._map_graph[row][x], self._map_graph[row-1][x+1], sqrt(2))
                 node += 1
-
-if __name__ == "__main__":
-    m3 = Map("map_3.map")
-    graph = m3.get_graph()
-    print(graph)
-    print(m3._map_graph[1][0])
