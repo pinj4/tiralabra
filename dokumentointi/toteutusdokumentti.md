@@ -30,7 +30,7 @@ O(d), jossa d on reitin pituus
 
 ## Suorituskyky- ja O-analyysivertailu
 
-| kartta | solmujen määrä | O(E + V log V)      | Dijkstran 10:n toiston keskiarvo| IDA*:n 10:n toiston keskiarvo |
+| kartta | solmujen määrä | O(E + V log V)      | Dijkstran 10:n toiston keskiarvo sekunneissa | IDA*:n 10:n toiston keskiarvo sekunneissa |
 | ------ | -------------- | ------------------- | ------------------------------- | ----------------------------- |
 | 4x4    | 16             | 80                  | 0.0001039                       | 0.0002835                     |
 | 8x8    | 64             | 410                 | 0.0001215                       | 0.0003617                     |
@@ -38,7 +38,12 @@ O(d), jossa d on reitin pituus
 | 32x32  | 1024           | 11884               | 0.0089881                       | 1.1370921                     |
 | 64x64  | 4096           | 59510               | 0.1597089                       | 0.0280987                     |
 
+
+![suorituskykyvertailu](/dokumentointi/kuvat/suorituskykyvertailu.png)
+
 Toistot tehtiin ohjelmassa olevilla kartoilla niiden ensimmäisestä vapaasta solmusta niiden viimeisimpään vapaaseen solmuun. Keskiarvojen mukaan Dijkstra on kaikilla syötteillä nopeampi, paitsi 64x64-kartalla, eli kun solmuja on 4096. Tuloksissa täytyy kuitenkin ottaa huomioon, että koska keskiarvomittaukset tehtiin vain tietyn kartan perusteella, voisivat ne olla erilaiset muilla kartoilla mitattuna.
+
+IDA*-algoritmi toimii hitaammin tapauksissa, joissa se joutuu ns. kulkemaan heurestiikkafunktion antamia arvoja vastaan. Näissä tilanteissa siis läpikäytävien solmujen määrää täytyy laajentaa, sillä heurestisen arvion perusteella järjestetyn pinon päällimmäisistä solmuista ei löydy oikeaa polkua. Joten mitä ilmeisemmin muissa paitsi 64x64-kartassa, polut ovat olleet tällaisia, jonka vuoksi IDA* ei ole toiminut niin tehokkaasti kuin se voisi. 
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 Työhön voisi etsiä enemmän monipuolisempia karttoja. Myös verkon luomisen kartan pohjalta voisi toteuttaa tehokkaammin.
