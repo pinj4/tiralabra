@@ -13,7 +13,7 @@ class Map():
         print(self.map)
     
     def update_map(self, path:list):
-        """function for "drawing on" a path the algorithm chose
+        """function for "drawing on" the path the algorithm chose
 
         Args:
             path (list): nodes in the chosen path
@@ -40,7 +40,7 @@ class Map():
             updated (list): graph with Xs marking the path
 
         Returns:
-            list: graph with Xs mrking the path formatted for printing
+            list: graph with Xs marking the path formatted for printing
         """
         new = []
         for row in updated:
